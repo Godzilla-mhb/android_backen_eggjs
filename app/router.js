@@ -16,4 +16,6 @@ module.exports = (app) => {
   router.get("/Android/filmlist", controller.filmlist.index);
   // 开启推流
   router.get("/Android/startstream", controller.startStream.index);
+  // 保存图片服务器,笔记
+  router.get("/Android/savePic", controller.savePic.index);
 };
