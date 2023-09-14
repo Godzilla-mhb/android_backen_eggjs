@@ -36,7 +36,7 @@ module.exports = (appInfo) => {
       host: "localhost", // 数据库地址
       port: "3306", // 数据库端口
       user: "root", // 数据库用户名
-      password: "mhb267364", // 数据库密码
+      password: "zlskj", // 数据库密码
       database: "watch", // 数据库名称
     },
     // 是否加载到 app 上，默认开启

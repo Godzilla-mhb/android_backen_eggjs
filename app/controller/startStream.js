@@ -6,7 +6,7 @@ class StreamController extends Controller {
   async index() {
     const { ctx } = this;
     // 关闭火灾报警的摄像机占用
-    const kill = Promise((res, rej) => {
+    const kill = new Promise((res, rej) => {
       exec(
         "python /home/mhb/src/stream_server/kill.py fire.py",
         (stdout, stderr) => {
