@@ -1,7 +1,6 @@
-"use strict";
-const { exec } = require("child_process");
-const { Controller } = require("egg");
-const fs = require("fs");
+'use strict';
+const { Controller } = require('egg');
+const fs = require('fs');
 
 class savePicController extends Controller {
   async index() {
@@ -10,11 +9,11 @@ class savePicController extends Controller {
 
     if (!file) {
       ctx.status = 400;
-      ctx.body = "未检测到文件.";
+      ctx.body = '未检测到文件.';
       return;
     }
     // 文件流服务器地址
-    const targetPath = '/home/mhb/src/cloud_img/' + file.filename
+    const targetPath = '/home/mhb/src/cloud_img/' + file.filename;
     const writeStream = fs.createWriteStream(targetPath);
 
     // 将上传的文件流写入到服务器的目标路径
@@ -26,7 +25,7 @@ class savePicController extends Controller {
 
     ctx.status = 200;
     ctx.body = {
-      message: "文件上传成功",
+      message: '文件上传成功',
       imageUrl: `/home/mhb/src/cloud_img/${file.filename}`,
     };
   }

@@ -3,34 +3,50 @@
   "version": "1.0.0",
   "description": "",
   "private": true,
+  "main": "app.js",
+  "files": [
+    "app",
+    "config",
+    "run",
+    "package.json",
+    "README.md"
+  ],
   "egg": {
     "declarations": true
   },
   "dependencies": {
-    "egg": "^3",
+    "egg": "^3.17.4",
     "egg-mysql": "^4.0.0",
-    "egg-scripts": "^2"
+    "egg-scripts": "^2.0.0"
   },
   "devDependencies": {
-    "egg-bin": "^5",
-    "egg-ci": "^2",
-    "egg-mock": "^5",
-    "eslint": "^8",
-    "eslint-config-egg": "^12"
+    "cross-env": "^7.0.3",
+    "egg-bin": "^5.14.1",
+    "egg-ci": "^2.0.0",
+    "egg-mock": "^5.0.0",
+    "eslint": "^8.0.0",
+    "eslint-config-egg": "^12.0.0",
+    "mocha": "^11.7.4",
+    "rimraf": "^5.0.0"
   },
   "engines": {
-    "node": ">=16.0.0"
+    "node": ">=16.0.0 <21.0.0"
   },
   "scripts": {
     "start": "egg-scripts start --daemon --title=egg-server-nas_backen_js",
     "stop": "egg-scripts stop --title=egg-server-nas_backen_js",
-    "dev": "egg-bin dev",
+    "dev": "cross-env NODE_OPTIONS=\"--no-experimental-fetch\" egg-bin dev",
     "debug": "egg-bin debug",
     "test": "npm run lint -- --fix && npm run test-local",
     "test-local": "egg-bin test",
     "cov": "egg-bin cov",
     "lint": "eslint .",
-    "ci": "npm run lint && npm run cov"
+    "ci": "npm run lint && npm run cov",
+    "build": "npm run lint",
+    "build:prod": "npm run lint && npm run clean",
+    "clean": "rimraf dist",
+    "deploy": "npm run build:prod && npm run start",
+    "package": "npm run build:prod && npm pack"
   },
   "ci": {
     "version": "16, 18",

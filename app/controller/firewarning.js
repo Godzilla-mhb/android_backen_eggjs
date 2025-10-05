@@ -1,15 +1,14 @@
-"use strict";
-const { exec } = require("child_process");
-const { Controller } = require("egg");
-const { stderr } = require("process");
+'use strict';
+const { exec } = require('child_process');
+const { Controller } = require('egg');
 
 class FireController extends Controller {
   async index() {
     const { ctx } = this;
     // 关闭录像功能
-    const kill = Promise((res, rej) => {
+    const kill = Promise(res => {
       exec(
-        "python /home/mhb/src/stream_server/kill.py film",
+        'python /home/mhb/src/stream_server/kill.py film',
         (stdout, stderr) => {
           console.log(stdout, stderr);
           res();
@@ -17,11 +16,11 @@ class FireController extends Controller {
       );
     });
 
-    kill.then(res=>{
-      console.log("成功:", res);
+    kill.then(res => {
+      console.log('成功:', res);
     });
-    exec("python /home/mhb/src/stream_server/fire.py");
-    ctx.body = "火灾报警打开！";
+    exec('python /home/mhb/src/stream_server/fire.py');
+    ctx.body = '火灾报警打开！';
   }
 }
 
