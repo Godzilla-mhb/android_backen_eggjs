@@ -29,19 +29,31 @@ module.exports = appInfo => {
     whitelist: [ '.jpg', '.jpeg', '.png' ], // 允许上传的文件扩展名
   };
 
-  // 数据库设置
   config.mysql = {
-    // MySQL 数据库配置
-    client: {
-      host: 'localhost', // 数据库地址
-      port: '3306', // 数据库端口
-      user: 'root', // 数据库用户名
-      password: 'mhb267364', // 数据库密码
-      database: 'watch', // 数据库名称
+    clients: {
+      // 数据库 A
+      dbA: {
+        host: 'localhost',
+        port: '3306',
+        user: 'root',
+        password: 'mhb267364',
+        database: 'watch',
+      },
+
+      // 数据库 B
+      dbB: {
+        host: 'localhost',
+        port: '3306',
+        user: 'root',
+        password: 'mhb267364',
+        database: 'cloud_nas',
+      },
     },
-    // 是否加载到 app 上，默认开启
+
+    // 默认数据库（不写 client 时用它）
+    default: 'dbA',
+
     app: true,
-    // 是否加载到 agent 上，默认关闭
     agent: false,
   };
 

@@ -4,6 +4,7 @@
   "description": "",
   "private": true,
   "main": "app.js",
+  "bin": "./server.js", 
   "files": [
     "app",
     "config",
@@ -17,15 +18,16 @@
   "dependencies": {
     "egg": "^3.17.4",
     "egg-mysql": "^4.0.0",
-    "egg-scripts": "^2.0.0"
+    "egg-scripts": "^2.0.0",
+    "pkg": "^5.8.1"
   },
   "devDependencies": {
     "cross-env": "^7.0.3",
     "egg-bin": "^5.14.1",
     "egg-ci": "^2.0.0",
     "egg-mock": "^5.0.0",
-    "eslint": "^8.0.0",
     "eslint-config-egg": "^12.0.0",
+    "eslint": "^8.0.0",
     "mocha": "^11.7.4",
     "rimraf": "^5.0.0"
   },
@@ -40,13 +42,25 @@
     "test": "npm run lint -- --fix && npm run test-local",
     "test-local": "egg-bin test",
     "cov": "egg-bin cov",
-    "lint": "eslint .",
+    "pkg:linux": "pkg . --targets node18-linux-x64 --output dist/linux/app",
+    "pkg:pi": "pkg . --targets node18-linux-aarch64 --output dist/linux/app",
     "ci": "npm run lint && npm run cov",
-    "build": "npm run lint",
+    "build": "egg-bin build",
     "build:prod": "npm run lint && npm run clean",
     "clean": "rimraf dist",
     "deploy": "npm run build:prod && npm run start",
     "package": "npm run build:prod && npm pack"
+  },
+  "pkg": {
+    "scripts": [
+      "app/**/*.js",
+      "config/**/*.js"
+    ],
+    "assets": [
+      "app/public/**/*",
+      "app/view/**/*"
+    ],
+    "output": "dist"
   },
   "ci": {
     "version": "16, 18",

@@ -1,7 +1,7 @@
 # nas_backen_js
 
-安卓监控程序后端，使用eggjs框架
-使用了
+安卓监控程序后端，使用 eggjs 框架
+使用了 node 20.5.x 版本
 
 ## QuickStart
 
@@ -29,6 +29,5 @@ $ npm stop
 - Use `npm run lint` to check code style.
 - Use `npm test` to run unit test.
 - Use `npm run autod` to auto detect dependencies upgrade, see [autod](https://www.npmjs.com/package/autod) for more detail.
-
 
 [egg]: https://eggjs.org

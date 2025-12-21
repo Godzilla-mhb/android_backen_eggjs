@@ -20,4 +20,6 @@ module.exports = app => {
   router.get('/Android/savePic', controller.savePic.index);
   // 获取音乐文件列表
   router.get('/Android/music', controller.music.index);
+  // 获取消息列表
+  router.get('/Android/getmessagelist', controller.message.index);
 };
