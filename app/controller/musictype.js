@@ -2,7 +2,7 @@
 
 const { Controller } = require('egg')
 
-class MusicController extends Controller {
+class MusicTypeController extends Controller {
   /**
    * 获取音乐文件列表
    * GET /Android/music
@@ -12,26 +12,25 @@ class MusicController extends Controller {
 
     try {
       // 调用service获取音乐文件列表
-      const query = ctx.query
-      const musicList = await service.music.getMusicList(query)
+      const musicList = await service.music.getMusicTypeList()
 
       // 返回成功响应
       ctx.body = {
         success: true,
         data: musicList,
-        message: '获取音乐列表成功',
+        message: '获取音乐类型成功',
         count: musicList.length,
       }
 
       ctx.status = 200
     } catch (error) {
       // 返回错误响应
-      ctx.logger.error('获取音乐列表失败:', error)
+      ctx.logger.error('获取音乐类型失败:', error)
 
       ctx.body = {
         success: false,
         data: [],
-        message: '获取音乐列表失败',
+        message: '获取音乐类型失败',
         error: error.message,
       }
 
@@ -40,4 +39,4 @@ class MusicController extends Controller {
   }
 }
 
-module.exports = MusicController
+module.exports = MusicTypeController
